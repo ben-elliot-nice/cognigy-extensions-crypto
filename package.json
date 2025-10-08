@@ -1,7 +1,7 @@
 {
-  "name": "my-extension",
-  "version": "0.0.1",
-  "description": "A Cognigy.AI Extension",
+  "name": "crypto",
+  "version": "5.0.1",
+  "description": "Crypto",
   "main": "build/module.js",
   "scripts": {
     "transpile": "tsc -p .",
@@ -10,13 +10,15 @@
     "lint": "tslint -c tslint.json src/**/*.ts"
   },
   "keywords": [
-    "Cognigy.AI",
-    "extensions"
+    "crypto",
+    "encrypt",
+    "decrypt"
   ],
-  "author": "Your Name",
-  "license": "ISC",
+  "author": "Cognigy GmbH",
+  "license": "MIT",
   "dependencies": {
-    "@cognigy/extension-tools": "^0.16.1"
+    "@cognigy/extension-tools": "^0.16.1",
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/node": "^13.13.15",
