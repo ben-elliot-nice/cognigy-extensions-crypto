@@ -1,130 +1,57 @@
-# Cognigy Extension Template
+# Crypto
 
-Quick start template for creating Cognigy.AI extensions with automated CI/CD workflows.
 
-## Getting Started
+This Extension exposes Node.JS's crypto functions to Cognigy.AI
 
-After creating a repository from this template:
+## Node: createHash
 
-### 1. Update package.json
+This node creates a Hash. It stores the result in the context or input object:
 
-- Change `name` to your extension name (e.g., "my-awesome-extension")
-- Update `description` with what your extension does
-- Update `author` with your name
-- Update `license` if needed (default: ISC)
+```json
+{ 
+	"key": {
+		"result":"5ae9b7f211e23aac3df5f2b8f3b8eada"
+	},
+	"iv": {
+    		"result": "1234567890abcdef" // utf8
+  	}
+ }
+```
+## Node: encrypt
 
-### 2. Add an icon
+This node encrypts. It stores the result in the context or input object:
 
-Add `icon.png` (64x64) to the root directory. This will be included in your extension package.
-
-### 3. Customize your extension
-
-- Edit `src/nodes/exampleNode.ts` or create new node files in `src/nodes/`
-- Update `src/module.ts` to import and export your nodes
-- Update the `options.label` in `src/module.ts` to match your extension name
-
-### 4. Set up git flow
-
-Initialize the develop branch and push it:
-
-```bash
-git checkout -b develop
-git push -u origin develop
+```json
+{ 
+	"encrypt": {
+		"result":"69ce7bfa6a9381f4",
+		"iv": "1234567890abcdef" // utf8
+	}
+ }
 ```
 
-### 5. Start building
+## Node: decrypt
 
-Install dependencies and build:
+This node decrypts. It stores the result in the context or input object:
 
-```bash
-npm install
-npm run build
+```json
+{
+	"decrypt": {
+		"result":"crypto"
+	}
+ }
 ```
 
-This will:
-- Compile TypeScript to JavaScript
-- Run linting checks
-- Create a `.tar.gz` package ready for upload to Cognigy.AI
+## Node: hmac
 
-### 6. Configure Automated Deployments (Optional)
+This node creates an HMAC (Hash-based Message Authentication Code). It stores the result in the context or input object:
 
-To enable automated deployments to Cognigy when you create releases:
-
-**See `docs/GITHUB_ACTIONS_SETUP.md` for detailed instructions.**
-
-Quick steps:
-1. Copy `.github/cognigy-deployments.yml.example` to `.github/cognigy-deployments.yml`
-2. Add GitHub Secrets for your Cognigy API credentials
-3. Update `.github/workflows/release.yml` with your secrets
-4. Commit and push
-
-## What's Included
-
-✅ **GitHub Actions Workflows**
-- `version-check.yml` - Validates version bumps on PRs to develop
-- `build.yml` - Builds extension on push to develop
-- `release.yml` - Creates GitHub releases on push to main
-
-✅ **TypeScript Configuration**
-- Pre-configured `tsconfig.json` for Cognigy extensions
-- Linting with `tslint.json`
-
-✅ **Documentation**
-- `docs/GIT_WORKFLOW.md` - Git flow and branching strategy
-- `docs/DEVELOPMENT_GUIDE.md` - How to create nodes and extensions
-- `docs/GITHUB_ACTIONS_SETUP.md` - CI/CD and deployment setup
-- `docs/example/` - Working code examples
-
-✅ **Starter Code**
-- Example node in `src/nodes/exampleNode.ts`
-- Extension module setup in `src/module.ts`
-
-## Development Workflow
-
-See `docs/GIT_WORKFLOW.md` for the complete workflow. Quick summary:
-
-1. Create feature branch from `develop`
-2. Make your changes (edit nodes, update module.ts)
-3. Test locally with `npm run build`
-4. Commit your code changes
-5. Bump version with `npm version patch` (or minor/major)
-6. Push and create PR to `develop`
-7. Merge to `develop` (triggers automated build)
-8. When ready for release, merge `develop` to `main` (creates GitHub release and deploys)
-
-## Project Structure
-
-```
-.
-├── .github/
-│   ├── workflows/                    # GitHub Actions CI/CD
-│   └── cognigy-deployments.yml       # Deployment configuration
-├── docs/
-│   ├── GIT_WORKFLOW.md              # Git flow guide
-│   ├── DEVELOPMENT_GUIDE.md         # Extension development guide
-│   ├── GITHUB_ACTIONS_SETUP.md      # CI/CD setup instructions
-│   ├── CLAUDE_CONTEXT.md            # Context for Claude Code AI
-│   └── example/                     # Working code examples
-├── src/
-│   ├── nodes/                       # Your extension nodes
-│   └── module.ts                    # Extension entry point
-├── package.json                     # Update with your details
-├── tsconfig.json                    # TypeScript configuration
-├── tslint.json                      # Linting rules
-└── icon.png                         # Extension icon (64x64)
+```json
+{
+	"hmac": {
+		"result":"a7b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7"
+	}
+ }
 ```
 
-## Available Scripts
-
-- `npm run transpile` - Compile TypeScript to JavaScript
-- `npm run lint` - Run linting checks
-- `npm run zip` - Create tarball package
-- `npm run build` - Run all of the above
-
-## Documentation
-
-- **[Cognigy Extension Documentation](https://docs.cognigy.com/)** - Official Cognigy docs
-- **`docs/GIT_WORKFLOW.md`** - Git flow, branching strategy, and PR process
-- **`docs/DEVELOPMENT_GUIDE.md`** - How to create nodes, use field types, and structure extensions
-- **`docs/GITHUB_ACTIONS_SETUP.md`** - CI/CD setup and automated Cognigy deployments
-- **`docs/example/`** - Working code examples and patterns
+Supported algorithms: SHA256, SHA1, SHA384, SHA512, MD5
